@@ -21,7 +21,7 @@ lagrange.basis<-function(x,y){
   }
   args<-"z"
   for (i in 1:length(l)){
-    l[[i]]<-eval(parse(text = paste('f <- function(', args, ') { return(' , l[[i]] , ')}', sep='')))
+    l[[i]]<-eval(parse(text = paste('f <- function(', args, ') {l[[i]]}', sep='')))
   }
   return(l)
 }

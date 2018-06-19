@@ -98,79 +98,14 @@ least_sq<-function(x,y,m){
   return(invisible())
 }
 
-################################################################################################################
-#TRY WITH DATA
-f<-function(x){sin(2*x)}
-x<-c(-7,-5,-2.3,-0.89,4,6.34)
-y<-f(x)
-dat<-data.frame(cbind(x,y))
+#SUBTRACT FUNCTIONS FOR ERRORS
+diff<-function(a,b){
+  force(a)
+  force(b)
+  function(x){a(x)-b(x)}
+}
 
-#CALCULATE ALL APPROXIMATIONS
-lagrange(x,y)
-piece_lin(x,y)
-cub_spline(x,y)
-tayl_app(f,0,5)
-least_sq(x,y,5)
 
-#PLOT
-plot_tog<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Interpolation and Approximation")+geom_point(size=5, col='red')+
-  stat_function(fun = int_pol, size=0.8, aes(colour="Lagr. int."))+
-  stat_function(fun = af, size=0.8, aes(colour="Piec. lin."))+
-  stat_function(fun = spl, size=0.8, aes(colour="Cub. spl."))+
-  stat_function(fun = lsq, size=0.8, aes(colour="Least Sq."))+
-  stat_function(fun = f, size=0.8, aes(colour="f(x)"))+
-  scale_colour_manual("", values = c("blue","red","#CC00CC","#009999","#00CC00"))
-print(plot_tog)
-
-ggsave(filename="together.pdf", plot=plot_tog,path="C:\\Users\\urska\\Desktop\\Numerical Intr Course\\R codes")
-
-############################################################################################################### 
-#TAYLOR DIFFERENT 
-f<-function(x){sin(2*x)}
-
-tayl_app(f,0,3)
-tay_poly_3<-taylor_poly
-tayl_app(f,0,5)
-tay_poly_5<-taylor_poly
-tayl_app(f,0,7)
-tay_poly_7<-taylor_poly
-x<-0
-y<-f(0)
-dat<-data.frame(cbind(x,y))
-
-plot_tay<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Taylor Polynomial Approximation")+geom_point(size=5, col='red')+
-  stat_function(fun = tay_poly_3, size=0.8, aes(colour="T3(x)"))+
-  stat_function(fun = tay_poly_5, size=0.8, aes(colour="T5(x)"))+
-  stat_function(fun = tay_poly_7, size=0.8, aes(colour="T7(x)"))+
-  stat_function(fun = f, size=0.8, aes(colour="f(x)"))+
-  xlim(-3,3)+
-  scale_colour_manual("", values = c("red","blue","#CC00CC","#009999"))
-print(plot_tay)
-
-ggsave(filename="taylor_diff.pdf", plot=plot_tay,path="C:\\Users\\urska\\Desktop\\Numerical Intr Course\\R codes")
-
-##############################################################################################################
-#LEAST SQUARES DIFFERENT
-x<-c(1,2,3,4,5,6,7)
-y<-c(5,4,6,3,2,0,-1)
-dat<-data.frame(cbind(x,y))
-
-least_sq(x,y,1)
-least_1<-lsq
-least_sq(x,y,2)
-least_2<-lsq
-least_sq(x,y,3)
-least_3<-lsq
-
-plot_lsq<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Least Square Approximation")+geom_point(size=5, col='green')+
-  stat_function(fun = least_1, size=0.8, aes(colour="p1(x)"))+
-  stat_function(fun = least_2, size=0.8, aes(colour="p2(x)"))+
-  stat_function(fun = least_3, size=0.8, aes(colour="p3(x)"))+
-  #stat_function(fun = f, size=0.8, aes(colour="f(x)"))+
-  scale_colour_manual("", values = c("blue","#CC00CC","#009999"))
-print(plot_lsq)
-
-ggsave(filename="lsq_diff.pdf", plot=plot_lsq,path="C:\\Users\\urska\\Desktop\\Numerical Intr Course\\R codes")
 
 
 

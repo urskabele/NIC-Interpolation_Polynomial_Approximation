@@ -5,19 +5,6 @@
 #E is the initial set of n+2 nodes
 
 remez<-function(f,n,E){
-  #function for vector with alternating sign
-  alt<-function(len){
-    vec<-c()
-    for (i in 1:len){
-      vec[i]<-(-1)^(i-1)
-    }
-    return(vec)}
-  #function for absolute value
-  absfun<-function(g){
-    force(g)
-    function(x){abs(g(x))}
-  }
-  
   E2<-rep(0,length(E))
   # x<-c(1)
   # y<-c(1)
@@ -39,7 +26,9 @@ remez<-function(f,n,E){
     coeff<-unknowns[-1]
     
     #derive polynomial
-    pol<-as.function(polynomial(coeff))
+    pol<-polynomial(coeff)
+    label<-paste0("p",paste(n),"(x)==",paste(pol))
+    pol<-as.function(pol)
     
     #define residual function
     r<-diff(f,pol)
@@ -72,15 +61,19 @@ remez<-function(f,n,E){
   plot(pol) #je ok
   #final polynomial is pol
   #plot
-  # plot<-ggplot(dat,aes(x=x, y=y)) + ggtitle("Interpolation and Approximation")+
-  #   stat_function(fun = f, size=0.8, aes(colour="f(x)"))+
-  #   stat_function(fun = pol, size=0.8, aes(colour="p",paste(n),"(x)"))+
-  #   scale_colour_manual("", values = c("red","blue"))
-  # print(plot)
-  # ggsave(filename=paste("least_max.pdf"), plot=plot,path="C:\\Users\\urska\\Desktop\\Numerical Intr Course\\R codes")
+  x<-c(1)
+  y<-c(1)
+  dat<-data.frame(cbind(x,y))
+  #label<-paste0("p",paste(n),"(x)==",paste(pol))
+  plot<-ggplot(dat,aes(x=x, y=y)) + ggtitle("Least Maximum Approximation Polynomial")+
+    stat_function(fun = f, size=0.8, aes(colour="f(x)"))+
+    stat_function(fun = pol, size=0.8, aes(colour="p(x)"))+
+    scale_colour_manual("", values = c("red","blue"))+xlim(min(E)-4,max(E)+4)+
+    annotate("label",x=-Inf,y=Inf,hjust=0,vjust=2,label = label,parse = TRUE)
+  print(plot)
+  ggsave(filename=paste("least_max.pdf"), plot=plot,path="C:\\Users\\urska\\Desktop\\Numerical Intr Course\\R codes")
   assign("lmax",pol, envir = .GlobalEnv)
   return(invisible())
-  
 }
 
 #######

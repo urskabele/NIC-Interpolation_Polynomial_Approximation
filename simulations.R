@@ -15,7 +15,7 @@ tayl_app(f,0,5)
 least_sq(x,y,5)
 
 #PLOT
-plot_tog<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Interpolation and Approximation")+geom_point(size=5, col='red')+
+plot_tog<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Interpolation and Approximation")+geom_point(size=5, col='red')+ylim(-3,3)+
   stat_function(fun = int_pol, size=0.8, aes(colour="Lagr. int."))+
   stat_function(fun = af, size=0.8, aes(colour="Piec. lin."))+
   stat_function(fun = spl, size=0.8, aes(colour="Cub. spl."))+
@@ -32,7 +32,7 @@ err_lin<-diff(f,af)
 err_spl<-diff(f,spl)
 
 #PLOT ERRORS
-plot_err<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Error Functions")+
+plot_err<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Error Functions")+ylim(-3,3)+
   stat_function(fun = err_lagr, size=0.8, aes(colour="Lagr. int."))+
   stat_function(fun = err_lin, size=0.8, aes(colour="Piec. lin."))+
   stat_function(fun = err_spl, size=0.8, aes(colour="Cub. spl."))+
@@ -56,7 +56,7 @@ tayl_app(f,0,5)
 least_sq(x,y,5)
 
 #PLOT
-plot_tog<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Interpolation and Approximation")+geom_point(size=5, col='red')+
+plot_tog<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Interpolation and Approximation")+geom_point(size=5, col='red')+ylim(-3,3)+
   stat_function(fun = int_pol, size=0.8, aes(colour="Lagr. int."))+
   stat_function(fun = af, size=0.8, aes(colour="Piec. lin."))+
   stat_function(fun = spl, size=0.8, aes(colour="Cub. spl."))+
@@ -73,7 +73,7 @@ err_lin2<-diff(f,af)
 err_spl2<-diff(f,spl)
 
 #PLOT ERRORS
-plot_err<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Error Functions")+
+plot_err<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Error Functions")+ylim(-3,3)+
   stat_function(fun = err_lagr2, size=0.8, aes(colour="Lagr. int."))+
   stat_function(fun = err_lin2, size=0.8, aes(colour="Piec. lin."))+
   stat_function(fun = err_spl2, size=0.8, aes(colour="Cub. spl."))+

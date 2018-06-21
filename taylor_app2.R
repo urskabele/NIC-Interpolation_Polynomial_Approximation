@@ -20,7 +20,7 @@ tayl_app<-function(f,a,k){
     stat_function(fun = f, size=1.25,aes(colour = "f(x)")) + 
     stat_function(fun = g, size=1.25,alpha=0.4,aes(colour = "T(x)"))+
     #scale_colour_manual("Lgend title", values = c("purple", "blue"))+
-    xlim(a-7,a+7)+
+    xlim(a-5,a+5)+
     annotate("label",x=-Inf,y=Inf,hjust=0,vjust=2,label = label,parse = TRUE)+
     scale_colour_manual("", values = c("#767676","red"))
   print(plot)

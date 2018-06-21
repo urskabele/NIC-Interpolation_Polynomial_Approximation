@@ -6,11 +6,9 @@
 
 remez<-function(f,n,E){
   E2<-rep(0,length(E))
-  # x<-c(1)
-  # y<-c(1)
-  # dat<-data.frame(cbind(x,y))
-  
   while (all(E==E2)==FALSE){
+    print(E2)
+    print(E)
     E2<-E
     #solve linear system
     fun<-f(E)
@@ -56,7 +54,7 @@ remez<-function(f,n,E){
       E[closest]<-maxim
     } else if (sign(rmaxim)==sign(rsecond)){
       E[second]<-maxim}
-    print(E)
+    #print(E)
   }
   plot(pol) #je ok
   #final polynomial is pol

@@ -26,5 +26,5 @@ least_sq<-function(x,y,m){
 
 x<-c(1,2,3,4,5)
 y<-c(5,4,6,3,2)
-m<-4
+m<-2
 least_sq(x,y,m)

@@ -23,9 +23,8 @@ lagrange<-function(x,y){
   return(invisible())
   }
 
-
-# x <- c(0, 2, 3, 4)
-# y <- c(7,76,-3,32)
+x <- c(0, 2, 3, 4)
+y <- c(7,76,-3,32)
 # lagrange(x,y)
 
 lagrange(x,y)

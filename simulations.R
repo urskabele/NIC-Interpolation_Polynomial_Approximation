@@ -15,12 +15,13 @@ tayl_app(f,0,5)
 least_sq(x,y,5)
 
 #PLOT
-plot_tog<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Interpolation and Approximation")+geom_point(size=5, col='red')+ylim(-3,3)+
+plot_tog<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Interpolation and Approximation")+ylim(-7,7)+xlim(-7,7)+
   stat_function(fun = int_pol, size=0.8, aes(colour="Lagr. int."))+
   stat_function(fun = af, size=0.8, aes(colour="Piec. lin."))+
   stat_function(fun = spl, size=0.8, aes(colour="Cub. spl."))+
   stat_function(fun = lsq, size=0.8, aes(colour="Least Sq."))+
   stat_function(fun = f, size=0.8, aes(colour="f(x)"))+
+  +geom_point(size=3, col='red')
   scale_colour_manual("", values = c("blue","red","#CC00CC","#009999","#00CC00"))
 print(plot_tog)
 
@@ -56,7 +57,7 @@ tayl_app(f,0,5)
 least_sq(x,y,5)
 
 #PLOT
-plot_tog<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Interpolation and Approximation")+geom_point(size=5, col='red')+ylim(-3,3)+
+plot_tog<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Interpolation and Approximation")+geom_point(size=3, col='red')+ylim(-7,7)+xlim(-7,7)+
   stat_function(fun = int_pol, size=0.8, aes(colour="Lagr. int."))+
   stat_function(fun = af, size=0.8, aes(colour="Piec. lin."))+
   stat_function(fun = spl, size=0.8, aes(colour="Cub. spl."))+
@@ -85,7 +86,7 @@ ggsave(filename="errors2.pdf", plot=plot_err,path="C:\\Users\\urska\\Desktop\\Nu
 #############################################################################################################
 #PLOTS OF ERRORS WITH DIFFERENT NUMBER OF NODES
 #LAGRANGE
-plot_err_lag<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Error Functions for Lagrange Interpolation")+
+plot_err_lag<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Error Functions for Lagrange Interpolation")+ylim(-3,3)+
   stat_function(fun = err_lagr, size=0.8, aes(colour="7 nodes"))+
   stat_function(fun = err_lagr2, size=0.8, aes(colour="11 nodes"))+
   scale_colour_manual("", values = c("red","blue"))
@@ -94,7 +95,7 @@ print(plot_err_lag)
 ggsave(filename="errors_lag.pdf", plot=plot_err_lag,path="C:\\Users\\urska\\Desktop\\Numerical Intr Course\\R codes")
 
 #PIECEWISE LINEAR
-plot_err_lin<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Error Functions for Piecewise Linear Interpolation")+
+plot_err_lin<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Error Functions for Piecewise Linear Interpolation")+ylim(-3,3)+
   stat_function(fun = err_lin, size=0.8, aes(colour="7 nodes"))+
   stat_function(fun = err_lin2, size=0.8, aes(colour="11 nodes"))+
   scale_colour_manual("", values = c("red","blue"))
@@ -103,7 +104,7 @@ print(plot_err_lin)
 ggsave(filename="errors_lin.pdf", plot=plot_err_lin,path="C:\\Users\\urska\\Desktop\\Numerical Intr Course\\R codes")
 
 #CUBIC SPLINE
-plot_err_spl<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Error Functions for Cubic Spline Interpolation")+
+plot_err_spl<-ggplot(dat, aes(x=x, y=y)) + ggtitle("Error Functions for Cubic Spline Interpolation")+ylim(-3,3)+
   stat_function(fun = err_spl, size=0.8, aes(colour="7 nodes"))+
   stat_function(fun = err_spl2, size=0.8, aes(colour="11 nodes"))+
   scale_colour_manual("", values = c("red","blue"))

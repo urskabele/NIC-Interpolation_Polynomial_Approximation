@@ -12,7 +12,7 @@ piece_lin<-function(x,y){
   return(invisible())
 }
 
-x<-c(1:4)
-y<-c(1,3,-1,2)
+x<-c(1:6)
+y<-runif(6,-3,3)
 
 piece_lin(x,y)

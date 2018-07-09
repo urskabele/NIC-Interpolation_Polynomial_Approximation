@@ -9,7 +9,7 @@ lagrange<-function(x,y){
   n<-length(x)-1
   dat<-data.frame(cbind(x,y)) #create data frame
   int_pol<-poly.calc(x, y) #Lagrange interpolation polynomial
-  coefi<-round(coef(int_pol),digits=5)
+  coefi<-coef(int_pol)
   int_pol<-polynomial(coefi)
   print(int_pol)  
   label<-paste0("L",paste(n),"(x)==",paste(int_pol))

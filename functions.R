@@ -40,12 +40,38 @@ absfun<-function(g){
   function(x){abs(g(x))}
 }
 
+#RETURNS THE LIST OF LAGRANGE BASIS POLYNOMIALS
+lagrange.basis<-function(x,y){
+  l<-list() #List to store lagr. basis polynomials
+  k<-1
+  for (i in x) {
+    # Set the numerator and denominator of the Lagrange polynomials to 1 and build them up
+    num <- 1
+    denom <- 1
+    # Remove the current x value from the iterated list
+    p <- x[! x %in% i]
+    # For the remaining points, construct the Lagrangian polynomial by successively appending each x value
+    for (j in p) {
+      num <- num*(Var("z")-j)
+      denom <-denom*(i-j)
+    }
+    # Set each Lagrangian polynomial in rSymPy to simplify later.
+    l[k] <- num/denom
+    k <- k + 1
+  }
+  args<-"z"
+  for (i in 1:length(l)){
+    l[[i]]<-eval(parse(text = paste('f <- function(', args, ') {l[[i]]}', sep='')))
+  }
+  return(l)
+}
+
 #LAGRANGE INTERPOLATION POLYNOMIAL
 lagrange<-function(x,y){
   n<-length(x)-1
   dat<-data.frame(cbind(x,y)) #create data frame
   int_pol<-poly.calc(x, y) #Lagrange interpolation polynomial
-  coefi<-round(coef(int_pol),digits=5)
+  coefi<-coef(int_pol)
   int_pol<-polynomial(coefi)
   print(int_pol)  
   label<-paste0("L",paste(n),"(x)==",paste(int_pol))

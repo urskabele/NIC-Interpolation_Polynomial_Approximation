@@ -1,11 +1,12 @@
 #returns the list of lagrange basis polynomials
 if(!require(rSymPy))install.packages("rSymPy");library(rSymPy)
 
+#RETURNS THE LIST OF LAGRANGE BASIS POLYNOMIALS
 lagrange.basis<-function(x,y){
   l<-list() #List to store lagr. basis polynomials
   k<-1
   for (i in x) {
-    # Set the numerator and denominator of the Lagrangian polynomials to 1 and build them up
+    # Set the numerator and denominator of the Lagrange polynomials to 1 and build them up
     num <- 1
     denom <- 1
     # Remove the current x value from the iterated list
